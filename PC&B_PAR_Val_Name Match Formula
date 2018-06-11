@@ -1,0 +1,142 @@
+=IF(
+  iserror(
+    INDEX($C$3:$C$599,
+      MATCH(
+        (
+          IF(
+            ISERROR(
+              MID(
+                SUBSTITUTE(
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(K3," JR",""),
+                      " SR",""),
+                    " II",""),
+                  " III",""),
+                " IV",""),
+                FIND("^",
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(
+                          SUBSTITUTE(
+                            SUBSTITUTE(K3," JR",""),
+                          " SR",""),
+                        " II",""),
+                      " III",""),
+                    " IV",""),
+                  ",","^",1)
+                )+1,
+                FIND("^",
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(
+                          SUBSTITUTE(
+                            SUBSTITUTE(
+                              SUBSTITUTE(K3," JR",""),
+                            " SR",""),
+                          " II",""),
+                        " III",""),
+                      " IV",""),
+                    ",","^",2),
+                  " ","^",1)
+                )
+                -FIND("^",
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(
+                          SUBSTITUTE(
+                            SUBSTITUTE(K3," JR",""),
+                          " SR",""),
+                        " II",""),
+                      " III",""),
+                    " IV",""),
+                  ",","^",1)
+                )-1)
+              )=TRUE,
+              MID(K3,FIND(",",K3)+1,LEN(K3)),
+              MID(
+                SUBSTITUTE(
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(K3," JR",""),
+                      " SR",""),
+                    " II",""),
+                  " III",""),
+                " IV",""),
+                FIND("^",
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(
+                          SUBSTITUTE(
+                            SUBSTITUTE(K3," JR",""),
+                          " SR",""),
+                        " II",""),
+                      " III",""),
+                    " IV",""),
+                  ",","^",1)
+                )+1,
+                FIND("^",
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(
+                          SUBSTITUTE(
+                            SUBSTITUTE(
+                              SUBSTITUTE(K3," JR",""),
+                            " SR",""),
+                          " II",""),
+                        " III",""),
+                      " IV",""),
+                    ",","^",2),
+                  " ","^",1)
+                )-FIND("^",
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(
+                          SUBSTITUTE(
+                            SUBSTITUTE(K3," JR",""),
+                          " SR",""),
+                        " II",""),
+                      " III",""),
+                    " IV",""),
+                  ",","^",1)
+                )-1
+              )
+            )
+          )&"*"&
+          (
+            LEFT(
+              SUBSTITUTE(
+                SUBSTITUTE(
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(K3," JR",""),
+                    " SR",""),
+                  " II",""),
+                " III",""),
+              " IV",""),
+              (
+                FIND(",",
+                  SUBSTITUTE(
+                    SUBSTITUTE(
+                      SUBSTITUTE(
+                        SUBSTITUTE(
+                          SUBSTITUTE(K3," JR",""),
+                        " SR",""),
+                      " II",""),
+                    " III",""),
+                  " IV",""),
+                1)
+              -1)
+            )
+          )&"*",$C$3:$C$599,0)
+        )
+      ),
+    if(ISBLANK(K3),"","Check Status"),"Current Employee")
