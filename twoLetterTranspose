@@ -1,0 +1,18 @@
+TRANSPOSE(
+  SORT(
+    UNIQUE(
+      ARRAYFORMULA(
+        LEFT(
+          FILTER(
+            PERSONNEL!$A$11:$A$551,
+            ISTEXT(
+              PERSONNEL!$A$11:$A$551
+            )
+          ),2
+        )
+      )
+    ),
+  1,
+  TRUE
+  )
+)
